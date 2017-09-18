@@ -3,6 +3,8 @@ package sv.com.lyckan.cuentameuncuento;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import sv.com.lyckan.cuentameuncuento.adapter.HistoriesAdapter;
+import sv.com.lyckan.cuentameuncuento.pojos.History;
+import sv.com.lyckan.cuentameuncuento.test.User;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +49,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Example();
     }
 
     @Override
@@ -97,5 +108,26 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void Example(){
+        List<History> items = new ArrayList<>();
+        History h1 = new History();
+        h1.setTitle("Loly");
+        History h2 = new History();
+        h2.setTitle("Cesar");
+
+        items.add(h1);
+        items.add(h2);
+
+        RecyclerView recycler = (RecyclerView) findViewById(R.id.recycler);
+        recycler.setHasFixedSize(true);
+
+
+        LinearLayoutManager lManager = new LinearLayoutManager(this);
+        recycler.setLayoutManager(lManager);
+
+        HistoriesAdapter adapter = new HistoriesAdapter(items);
+        recycler.setAdapter(adapter);
     }
 }

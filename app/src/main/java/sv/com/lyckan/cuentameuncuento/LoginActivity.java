@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 
@@ -73,7 +72,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void start(){
-        Intent intent = new Intent(this, MainActivity.class);
+//        Intent intent = new Intent(this, MainActivity.class);
+//        startActivity(intent);
+
+        Intent intent = new Intent(this, ReadFragmentActivity.class);
+        intent.putExtra("chapters", 10);
         startActivity(intent);
     }
 }
