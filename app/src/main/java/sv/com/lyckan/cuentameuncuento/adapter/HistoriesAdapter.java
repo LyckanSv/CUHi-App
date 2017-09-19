@@ -1,12 +1,15 @@
 package sv.com.lyckan.cuentameuncuento.adapter;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,13 +65,21 @@ public class HistoriesAdapter extends RecyclerView.Adapter<HistoriesAdapter.Hist
     }
 
     @Override
-    public void onBindViewHolder(HistoriesViewHolder holder, final int position) {
+    public void onBindViewHolder(final HistoriesViewHolder holder, final int position) {
         History history = items.get(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 Intent intent = new Intent(context, ReadFragmentActivity.class);
-                context.startActivity(intent);
+                intent.putExtra("parametro", items.get(position));
+
+
+                ActivityOptionsCompat options = ActivityOptionsCompat.
+                        makeSceneTransitionAnimation((Activity) context, (View)holder.binding.imageView2, "profile");
+
+                context.startActivity(intent, options.toBundle());
             }
         });
         holder.bind(history);

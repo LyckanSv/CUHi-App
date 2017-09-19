@@ -37,7 +37,13 @@ public class ScreenSlidePageFragment extends Fragment {
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    speakRequest.speak(body);
+                    if (speakRequest.isSpeaking()){
+                        speakRequest.stopSpeak();
+                        imageButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_arrow_black));
+                    }else{
+                        speakRequest.speak(body);
+                        imageButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_stop_black));
+                    }
                 }
             });
         }catch (Exception e){
@@ -47,6 +53,21 @@ public class ScreenSlidePageFragment extends Fragment {
 
         return rootView;
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if (this.isVisible()) {
+            if (!isVisibleToUser) {
+                Log.d("MyFragment", "Not visible anymore.  Stopping audio.");
+                if (speakRequest.isSpeaking()){
+                    speakRequest.stopSpeak();
+                }
+            }
+        }
+    }
+
 
     public static final ScreenSlidePageFragment newInstance(String image, String body, String pos)
     {

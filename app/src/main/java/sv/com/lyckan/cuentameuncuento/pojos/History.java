@@ -4,6 +4,8 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v7.graphics.Palette;
 
 import com.google.gson.annotations.Expose;
@@ -13,7 +15,7 @@ import com.squareup.picasso.Target;
 
 import sv.com.lyckan.cuentameuncuento.BR;
 
-public class History extends BaseObservable {
+public class History extends BaseObservable implements Parcelable{
 
     @SerializedName("id_history")
     @Expose
@@ -46,6 +48,29 @@ public class History extends BaseObservable {
     @SerializedName("rating")
     @Expose
     private Integer rating;
+
+    protected History(Parcel in) {
+        idHistory = in.readString();
+        autorName = in.readString();
+        title = in.readString();
+        category = in.readString();
+        image = in.readString();
+        chapters = in.readString();
+        description = in.readString();
+        date = in.readString();
+    }
+
+    public static final Creator<History> CREATOR = new Creator<History>() {
+        @Override
+        public History createFromParcel(Parcel in) {
+            return new History(in);
+        }
+
+        @Override
+        public History[] newArray(int size) {
+            return new History[size];
+        }
+    };
 
     public String getIdHistory() {
         return idHistory;
@@ -129,4 +154,20 @@ public class History extends BaseObservable {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(idHistory);
+        parcel.writeString(autorName);
+        parcel.writeString(title);
+        parcel.writeString(category);
+        parcel.writeString(image);
+        parcel.writeString(chapters);
+        parcel.writeString(description);
+        parcel.writeString(date);
+    }
 }

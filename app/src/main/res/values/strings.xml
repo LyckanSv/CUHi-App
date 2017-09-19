@@ -22,5 +22,8 @@
     <string name="exit_menu">Exit</string>
 
     <string name="error_load">No load history :(</string>
+    <string name="read_btn">Read</string>
+    <string name="search_title">Find story</string>
+    <string name="builder_alert">We are building for you!</string>
 
 </resources>
