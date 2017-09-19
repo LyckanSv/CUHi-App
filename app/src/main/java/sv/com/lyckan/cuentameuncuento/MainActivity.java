@@ -3,8 +3,10 @@ package sv.com.lyckan.cuentameuncuento;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,13 +16,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import sv.com.lyckan.cuentameuncuento.adapter.HistoriesAdapter;
-import sv.com.lyckan.cuentameuncuento.pojos.History;
-import sv.com.lyckan.cuentameuncuento.test.User;
+import sv.com.lyckan.cuentameuncuento.webservice.ApiController;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,7 +48,16 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Example();
+        RecyclerView recycler = (RecyclerView) findViewById(R.id.recycler);
+        recycler.setHasFixedSize(true);
+        GridLayoutManager lManager = new GridLayoutManager(getApplicationContext(), 2);
+        recycler.setLayoutManager(lManager);
+        ApiController api = new ApiController(this, recycler);
+        api.getHistories(getResources().getString(R.string.url_history_general_all));
+
+
+
+
     }
 
     @Override
@@ -91,17 +98,13 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_multimedia) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_options) {
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_exit) {
 
         }
 
@@ -110,24 +113,4 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void Example(){
-        List<History> items = new ArrayList<>();
-        History h1 = new History();
-        h1.setTitle("Loly");
-        History h2 = new History();
-        h2.setTitle("Cesar");
-
-        items.add(h1);
-        items.add(h2);
-
-        RecyclerView recycler = (RecyclerView) findViewById(R.id.recycler);
-        recycler.setHasFixedSize(true);
-
-
-        LinearLayoutManager lManager = new LinearLayoutManager(this);
-        recycler.setLayoutManager(lManager);
-
-        HistoriesAdapter adapter = new HistoriesAdapter(items);
-        recycler.setAdapter(adapter);
-    }
 }

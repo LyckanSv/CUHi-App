@@ -43,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
                 validate();
             }
         });
+
+
     }
 
     private boolean validate(){
@@ -72,11 +74,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void start(){
-//        Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
-
-        Intent intent = new Intent(this, ReadFragmentActivity.class);
-        intent.putExtra("chapters", 10);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
+
+
+//        Intent intent = new Intent(this, ReadFragmentActivity.class);
+//        intent.putExtra("chapters", 10);
+//        startActivity(intent);
     }
 }

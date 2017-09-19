@@ -1,10 +1,12 @@
 package sv.com.lyckan.cuentameuncuento.pojos;
 
+import android.databinding.BaseObservable;
+
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Histories {
+public class Histories{
 
     @SerializedName("histories")
     @Expose

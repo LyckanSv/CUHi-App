@@ -1,9 +1,19 @@
 package sv.com.lyckan.cuentameuncuento.pojos;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.support.v7.graphics.Palette;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
-public class History {
+import sv.com.lyckan.cuentameuncuento.BR;
+
+public class History extends BaseObservable {
 
     @SerializedName("id_history")
     @Expose
@@ -22,6 +32,7 @@ public class History {
     private String category;
     @SerializedName("image")
     @Expose
+    @Bindable
     private String image;
     @SerializedName("chapters")
     @Expose
@@ -82,6 +93,7 @@ public class History {
 
     public void setImage(String image) {
         this.image = image;
+        notifyPropertyChanged(BR.image);
     }
 
     public String getChapters() {
@@ -115,5 +127,6 @@ public class History {
     public void setRating(Integer rating) {
         this.rating = rating;
     }
+
 
 }
