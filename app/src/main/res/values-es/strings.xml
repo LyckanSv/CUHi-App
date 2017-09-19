@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Cuentame Un Cuento</string>
+    <string name="url_history_general_all">https://raw.githubusercontent.com/LyckanSv/jsonTest/master/</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Ajustes</string>
+
+    <string name="email">Cual es tu correo?</string>
+    <string name="password">Cual es tu contraña?</string>
+    <string name="button_login">Iniciar sesion</string>
+    <string name="button_logup">Registrarse</string>
+
+    <!--Alerts for errors-->
+    <string name="error_mail">Correo Invalido</string>
+    <string name="error_pass">La contraseña es invalida</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="multimedia_menu">Multimedia</string>
+    <string name="setting_menu">Ajustes</string>
+    <string name="share_menu">Compartir</string>
+    <string name="exit_menu">Salir</string>
+
+    <string name="error_load">No se pueden cargar los cuentos :(</string>
+    <string name="read_btn">Leer</string>
+    <string name="search_title">Busca historia</string>
+    <string name="builder_alert">Lo estamos haciendo para ti!</string>
+
+</resources>

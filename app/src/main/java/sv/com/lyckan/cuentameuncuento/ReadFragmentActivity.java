@@ -82,7 +82,7 @@ public class ReadFragmentActivity extends FragmentActivity {
     private void getData(){
 
         ApiController ctr = new ApiController();
-        ApiController.Controller controller = ctr.getHistorySelected("");
+        ApiController.Controller controller = ctr.getHistorySelected(getResources().getString(R.string.url_history_general_all));
 
         controller.getHistory().enqueue(new Callback<SelectHistory>() {
             @Override

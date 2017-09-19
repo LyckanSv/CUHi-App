@@ -36,7 +36,7 @@ public class ApiController {
 
     //Interfas de llamadas
     public interface Controller{
-        @GET("95014b22ac902ca28de5f617dfba05eb2979f53f/histories.json")
+        @GET("historias.json")
         Call<Histories> getHistories();
 
         @GET("history.json")
@@ -80,7 +80,7 @@ public class ApiController {
         Controller controller = null;
         if (retrofit==null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://raw.githubusercontent.com/LyckanSv/jsonTest/master/")
+                    .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
