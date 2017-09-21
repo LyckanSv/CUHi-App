@@ -14,6 +14,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import sv.com.lyckan.cuentameuncuento.adapter.HistoriesAdapter;
 import sv.com.lyckan.cuentameuncuento.pojos.Histories;
 import sv.com.lyckan.cuentameuncuento.pojos.SelectHistory;
@@ -39,8 +40,8 @@ public class ApiController {
         @GET("historias.json")
         Call<Histories> getHistories();
 
-        @GET("history.json")
-        Call<SelectHistory> getHistory();
+        @GET("{his}.json")
+        Call<SelectHistory> getHistory(@Path("his") String history);
     }
 
     //Retorna todos los cuentos

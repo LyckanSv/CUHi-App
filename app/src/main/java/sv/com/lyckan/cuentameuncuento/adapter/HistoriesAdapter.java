@@ -71,10 +71,8 @@ public class HistoriesAdapter extends RecyclerView.Adapter<HistoriesAdapter.Hist
             @Override
             public void onClick(View view) {
 
-
                 Intent intent = new Intent(context, ReadFragmentActivity.class);
                 intent.putExtra("parametro", items.get(position));
-
 
                 ActivityOptionsCompat options = ActivityOptionsCompat.
                         makeSceneTransitionAnimation((Activity) context, (View)holder.binding.imageView2, "profile");

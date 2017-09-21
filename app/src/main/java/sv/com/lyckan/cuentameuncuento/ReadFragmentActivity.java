@@ -52,8 +52,9 @@ public class ReadFragmentActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_fragment);
+        History articulo = getIntent().getParcelableExtra("parametro");
         ButterKnife.bind(this);
-        getData();
+        getData(articulo.getIdHistory());
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +62,7 @@ public class ReadFragmentActivity extends FragmentActivity {
                 constraintLayout.setVisibility(View.GONE);
             }
         });
-        History articulo = getIntent().getParcelableExtra("parametro");
+
         Picasso.with(this).load(articulo.getImage()).into(imageView);
         textView.setText(articulo.getTitle());
 
@@ -79,12 +80,12 @@ public class ReadFragmentActivity extends FragmentActivity {
         return fList;
     }
 
-    private void getData(){
+    private void getData(String key){
 
         ApiController ctr = new ApiController();
         ApiController.Controller controller = ctr.getHistorySelected(getResources().getString(R.string.url_history_general_all));
 
-        controller.getHistory().enqueue(new Callback<SelectHistory>() {
+        controller.getHistory(key).enqueue(new Callback<SelectHistory>() {
             @Override
             public void onResponse(Call<SelectHistory> call, Response<SelectHistory> response) {
                 List<Fragment> fragments = getFragments(response.body().getChapters());

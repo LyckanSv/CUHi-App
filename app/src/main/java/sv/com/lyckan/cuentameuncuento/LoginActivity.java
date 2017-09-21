@@ -48,15 +48,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validate(){
-//        if (mAwesomeValidation.validate()) {
-//            ///Si es valido intentaremos hacer la consulta al servidor
-//            requestToService(email.getText().toString(), password.getText().toString());
-//        }
-
-        if (true) {
+        if (mAwesomeValidation.validate()) {
             ///Si es valido intentaremos hacer la consulta al servidor
             requestToService(email.getText().toString(), password.getText().toString());
         }
+
+
         return false;
     }
 
