@@ -37,7 +37,7 @@ public class ApiController {
 
     //Interfas de llamadas
     public interface Controller{
-        @GET("historias.json")
+        @GET("/cuhi/public/index.php/api/historyall")
         Call<Histories> getHistories();
 
         @GET("{his}.json")

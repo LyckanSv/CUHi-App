@@ -1,6 +1,9 @@
 package sv.com.lyckan.cuentameuncuento;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
@@ -55,7 +58,11 @@ public class MainActivity extends AppCompatActivity
         GridLayoutManager lManager = new GridLayoutManager(getApplicationContext(), 2);
         recycler.setLayoutManager(lManager);
         ApiController api = new ApiController(this, recycler);
-        api.getHistories(getResources().getString(R.string.url_history_general_all));
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String syncConnPref = sharedPref.getString("key_gallery_name", null);
+        Toast.makeText(this, syncConnPref, Toast.LENGTH_SHORT).show();
+        api.getHistories("http://"+syncConnPref);
+
 
 
 
@@ -111,6 +118,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 
